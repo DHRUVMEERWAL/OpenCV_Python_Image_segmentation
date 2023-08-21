@@ -50,7 +50,7 @@ D).  #STEP 4: Calculating Unburnt Red House
     Count_Unburnt_Red_House(Image,Unburnt_Red_Houses)
 
 
-Approch to the problem is to first Count All Blue,Red,Unburnt and Unburnt Red House
+Approach to the problem is to first Count All Blue,Red,Unburnt and Unburnt Red House
 as :
 
 Burnt Houses = Burnt Blue House + Burnt Red Houses
@@ -58,4 +58,18 @@ Unburnt Houses = Unburnt Blue House + Unburnt Red Houses
 
 So, using the above equations we can calculate the given variables.
 
-Now, 
+Now, image segmentation as well as count works in the following way:
+
+1). Input image inRange() flag to segment out the Unburnt Area using BGR Color Codec
+and is further masked out using cyan color.
+2). Now, Using Floodfill Algorithm the masked image converted such that cyan becomes blue and remaing unburnt houses depicted in red.
+3). The above proceessed image is then superimposed with blue colour houses.
+[Note: the above approach is used as superimposing blue colour houses on blue color burnt are will help the program to run with neglecting them and counting and the superimposed as well as the reaming red houses which were not superimposed .]
+4). Blue colour and Red Colour house are segregated using inRange() flag as shown in 1). .
+5). Now a BGR2GRAY flag is applied so as to convert the superimposed into black and white mask.
+6). The black and white mask is then used to calculate number of houses using Canny's Algorithm for finding contours.
+
+At last all the above sub-function/approach are used in order to calculated A,B,C,D and further the required outcomes.
+
+
+According the given sample images 6 test cases are passed out of 10.
